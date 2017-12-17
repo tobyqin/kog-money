@@ -8,8 +8,8 @@ from time import sleep
 # 屏幕分辨率
 device_x, device_y = 1920, 1080
 
-# 是否已完整通关
-already_pass = True
+# 通关模式：1=重新挑战 -> 挑战界面，2=重新挑战-> 更换阵容
+game_mode = 1
 
 # 各步骤等待间隔
 step_wait = [3, 13, 55, 3, 3]
@@ -32,7 +32,7 @@ def tap_screen(x, y):
 
 
 def do_money_work():
-    if not already_pass:
+    if game_mode == 1:
         logging.debug('#0 start the game')
         tap_screen(1600, 970)
         sleep(step_wait[0])
