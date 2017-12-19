@@ -12,7 +12,7 @@ device_x, device_y = 1920, 1080
 game_mode = 1
 
 # 各步骤等待间隔
-step_wait = [3, 13, 55, 3, 3]
+step_wait = [3, 13, 25, 3, 3]
 
 # 刷金币次数
 repeat_times = 50
@@ -43,13 +43,12 @@ def do_money_work():
 
     logging.debug('#2 auto power on!')
     tap_screen(1780, 40)
-    sleep(step_wait[2])
 
-    logging.debug('#3 well done!')
-    tap_screen(940, 1000)
-    sleep(step_wait[3])
+    for i in range(step_wait[2]):
+        tap_screen(1000, 500)
+        sleep(1)
 
-    logging.debug('#4 do it again...\n')
+    logging.debug('#3 do it again...\n')
     tap_screen(1430, 980)
     sleep(step_wait[4])
 
