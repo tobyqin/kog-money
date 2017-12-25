@@ -12,7 +12,7 @@ device_x, device_y = 1920, 1080
 game_mode = 2
 
 # 各步骤等待间隔
-step_wait = [3, 13, 22, 3, 3]
+step_wait = [3, 13, 25, 3, 3]
 
 # 刷金币次数
 repeat_times = 60
