@@ -9,13 +9,13 @@ from time import sleep
 device_x, device_y = 1920, 1080
 
 # 通关模式：1=重新挑战 -> 挑战界面，2=重新挑战-> 更换阵容
-game_mode = 1
+game_mode = 2
 
 # 各步骤等待间隔
-step_wait = [3, 13, 25, 3, 3]
+step_wait = [3, 13, 24, 3, 3]
 
 # 刷金币次数
-repeat_times = 50
+repeat_times = 60
 
 # 日志输出
 logging.basicConfig(format='%(asctime)s %(message)s',
@@ -45,11 +45,11 @@ def do_money_work():
     tap_screen(1780, 40)
 
     for i in range(step_wait[2]):
-        tap_screen(1000, 500)
+        tap_screen(1720, 80)
         sleep(1)
 
     logging.debug('#3 do it again...\n')
-    tap_screen(1430, 980)
+    tap_screen(1600, 980)
     sleep(step_wait[4])
 
 
