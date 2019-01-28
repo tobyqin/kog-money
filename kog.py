@@ -42,6 +42,8 @@ def take_action(action):
     elif action == 'continue':
         tap_screen(1074, 971)
 
+    sleep(1)
+
 
 if __name__ == '__main__':
     while True:
