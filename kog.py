@@ -40,6 +40,8 @@ def take_action(action):
         tap_screen(1074, 971)
         start = time.time()
         count = count + 1
+        if count > repeat_times: # 到达指定次数后退出
+            exit(0)
     elif action == 'exit':
         tap_screen(1950, 100)
 
