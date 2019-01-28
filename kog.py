@@ -3,7 +3,8 @@
 import logging
 import os
 from baseline import check_action, save_crop, convert_cord
-
+import time
+from time import sleep
 
 # 刷金币次数
 repeat_times = 60
@@ -23,6 +24,8 @@ def tap_screen(x, y):
 
 
 def take_action(action):
+    global start
+    global count
     if not action:
         return
     if action == 'restart':
@@ -32,13 +35,20 @@ def take_action(action):
     elif action in ['skip0', 'skip1']:
         tap_screen(2080, 44)
     elif action == 'continue':
+        logging.info("round #{}, 花费时间: {}秒".format(count, time.time() - start))
         tap_screen(1074, 971)
+        start = time.time()
+        count = count + 1
     elif action == 'exit':
         tap_screen(1950, 100)
+
+    sleep(1)
 
 
 if __name__ == '__main__':
     # save_crop()
+    count = 0
+    start = time.time()
     while True:
         action = check_action()
         take_action(action)
