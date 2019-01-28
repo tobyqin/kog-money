@@ -4,11 +4,9 @@ import os
 import logging
 import subprocess
 from io import BytesIO
-from auto_adb import auto_adb
 from adb.client import Client as AdbClient
 client = AdbClient(host="127.0.0.1", port=5037)
 
-adb = auto_adb()
 device = client.devices()[0]
 
 baseline = {}
@@ -29,22 +27,25 @@ ACTIONS = boxes.keys()
 
 # 屏幕分辨率
 device_x, device_y = 2244, 1080
+base_x, base_y = 2244, 1080
+
+
+def init():
+    find_screen_size()
 
 
 def convert_cord(x,y):
-    base_x, base_y = 2244, 1080
     real_x = int(x / base_x * device_x)
     real_y = int(y / base_y * device_y)
     return real_x, real_y
 
-def convert_box(a,b,c,d):
-    a, b = convert_cord(a,b)
-    c, d = convert_cord(c,d)
-    return (a,b,c,d)
 
-
-for key in boxes:
-    boxes[key] = convert_box(*boxes[key])
+def find_screen_size():
+    global device_x
+    global device_y
+    img = pull_screenshot(False)
+    device_x, device_y = img.size
+    logging.info('device size x, y = ({}, {})'.format(device_x, device_y))
 
 
 def save_crop():
@@ -53,15 +54,20 @@ def save_crop():
         img.crop(val).save('img/crop_'+key+'.png')
 
 
-def pull_screenshot():
+def pull_screenshot(resize=True):
     global SCREENSHOT_WAY
 
     if SCREENSHOT_WAY == 0:
         os.system('adb shell screencap -p /sdcard/screen.png')
         os.system('adb pull /sdcard/screen.png')
-        return Image.open('screen.png')
-    elif 1 <= SCREENSHOT_WAY <= 3:
-        return Image.open(BytesIO(device.screencap()))
+        img =  Image.open('screen.png')
+    else:
+        img = Image.open(BytesIO(device.screencap()))
+
+    if resize and img.size != (base_x, base_y):
+        return img.resize((base_x, base_y))
+    else:
+        return img
 
 
 def check_action():
@@ -79,5 +85,7 @@ def check_action():
     if crop_frame[min_key] < threshold:
         logging.info("ACTION: {}".format(min_key))
         return min_key
+
+    logging.debug("ACTION: no action")
 
     return None

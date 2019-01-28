@@ -2,7 +2,7 @@
 
 import logging
 import os
-from baseline import check_action, save_crop, convert_cord
+from baseline import check_action, save_crop, convert_cord, init
 import time
 import datetime
 from time import sleep
@@ -13,7 +13,8 @@ repeat_times = 60
 # 日志输出
 logging.basicConfig(format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p',
-                    level=logging.INFO)
+                    level=logging.DEBUG
+                    )
 
 
 def tap_screen(x, y):
@@ -49,6 +50,7 @@ def take_action(action):
 
 
 if __name__ == '__main__':
+    init()
     save_crop()
     count = 0
     start = time.time()
