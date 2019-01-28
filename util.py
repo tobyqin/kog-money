@@ -19,7 +19,8 @@ boxes = {
     'start': (1475,  830, 1720, 920),
     'skip0': (2000, 29, 2100, 85),
     'skip1': (2025, 20, 2135, 70),
-    'exit': (1890, 60, 2030, 145,)
+    'exit': (1890, 60, 2030, 145,),
+    'start_match': (1100,860, 1400, 940)
 }
 
 threshold = 10
@@ -38,6 +39,14 @@ def convert_cord(x,y):
     real_x = int(x / base_x * device_x)
     real_y = int(y / base_y * device_y)
     return real_x, real_y
+
+
+def tap_screen(x, y):
+    """calculate real x, y according to device resolution."""
+    real_x, real_y = convert_cord(x, y)
+    cmd = 'adb shell input tap {} {}'.format(real_x, real_y)
+    logging.debug(cmd)
+    os.system(cmd)
 
 
 def find_screen_size():
