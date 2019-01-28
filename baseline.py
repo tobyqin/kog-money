@@ -20,13 +20,14 @@ boxes = {
     'continue': (1000, 940, 1250, 1000),
     'start': (1475,  830, 1720, 920),
     'skip0': (2000, 29, 2100, 85),
-    'skip1': (2025, 20, 2135, 70)
+    'skip1': (2025, 20, 2135, 70),
+    'exit': (1890, 60, 2030, 145,)
 }
 
 threshold = 10
 
 
-ACTIONS = ['skip0', 'skip1', 'start', 'restart', 'continue']
+ACTIONS = boxes.keys()
 
 
 def save_crop():
@@ -61,7 +62,4 @@ def check_action():
         logging.info("ACTION: {}".format(min_key))
         return min_key
 
-    logging.info("NO ACTION")
     return None
-
-
