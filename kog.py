@@ -2,10 +2,7 @@
 
 import logging
 import os
-from baseline import check_action, save_crop
-
-# 屏幕分辨率
-device_x, device_y = 2244, 1080
+from baseline import check_action, save_crop, convert_cord
 
 
 # 刷金币次数
@@ -17,17 +14,9 @@ logging.basicConfig(format='%(asctime)s %(message)s',
                     level=logging.INFO)
 
 
-def convert_cord(x,y):
-    base_x, base_y = 2244, 1080
-    real_x = int(x / base_x * device_x)
-    real_y = int(y / base_y * device_y)
-    return real_x, real_y
-
 def tap_screen(x, y):
     """calculate real x, y according to device resolution."""
-    base_x, base_y = 2244, 1080
-    real_x = int(x / base_x * device_x)
-    real_y = int(y / base_y * device_y)
+    real_x, real_y = convert_cord(x, y)
     cmd = 'adb shell input tap {} {}'.format(real_x, real_y)
     logging.debug(cmd)
     os.system(cmd)

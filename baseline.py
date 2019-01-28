@@ -25,15 +25,33 @@ boxes = {
 }
 
 threshold = 10
-
-
 ACTIONS = boxes.keys()
+
+# 屏幕分辨率
+device_x, device_y = 2244, 1080
+
+
+def convert_cord(x,y):
+    base_x, base_y = 2244, 1080
+    real_x = int(x / base_x * device_x)
+    real_y = int(y / base_y * device_y)
+    return real_x, real_y
+
+def convert_box(a,b,c,d):
+    a, b = convert_cord(a,b)
+    c, d = convert_cord(c,d)
+    return (a,b,c,d)
+
+
+for key in boxes:
+    boxes[key] = convert_box(*boxes[key])
 
 
 def save_crop():
     for key, val in boxes.items():
         img = Image.open(key+'.png')
         img.crop(val).save('crop_'+key+'.png')
+
 
 def pull_screenshot():
     global SCREENSHOT_WAY
