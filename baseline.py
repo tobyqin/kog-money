@@ -49,8 +49,8 @@ for key in boxes:
 
 def save_crop():
     for key, val in boxes.items():
-        img = Image.open(key+'.png')
-        img.crop(val).save('crop_'+key+'.png')
+        img = Image.open('img/' + key + '.png')
+        img.crop(val).save('img/crop_'+key+'.png')
 
 
 def pull_screenshot():
@@ -67,7 +67,7 @@ def pull_screenshot():
 def check_action():
     if not baseline:
         for n in ACTIONS:
-            baseline[n] = np.array(Image.open('crop_' + n + '.png'))
+            baseline[n] = np.array(Image.open('img/crop_' + n + '.png'))
 
     frame = pull_screenshot()
 

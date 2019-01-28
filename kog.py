@@ -4,6 +4,7 @@ import logging
 import os
 from baseline import check_action, save_crop, convert_cord
 import time
+import datetime
 from time import sleep
 
 # 刷金币次数
@@ -46,9 +47,10 @@ def take_action(action):
 
 
 if __name__ == '__main__':
-    # save_crop()
+    save_crop()
     count = 0
     start = time.time()
+    logging.info("start at: {}".format(datetime.datetime.now()))
     while True:
         action = check_action()
         take_action(action)
