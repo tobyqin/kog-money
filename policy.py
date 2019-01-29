@@ -24,7 +24,8 @@ class RandomPlayPolicy(Policy):
                  'caocao','daqiao','mozi','change','miyue','sunbin',]
     finished = []
 
-    SAVE_PATH= 'finished.json'
+    SAVE_PATH = 'finished.json'
+    HERO_PATH = 'hero.json'
     current_hero = None
 
     def __init__(self):
@@ -32,15 +33,21 @@ class RandomPlayPolicy(Policy):
         self.hero_num = len(self.hero_list)
         self.num_actions = len(tap_only_cords) + len(swipe_cords)
         self.load_finished()
+        self.load_hero()
 
     def save_finished(self):
-        with open('finished.json', 'w') as f:
+        with open(self.SAVE_PATH, 'w') as f:
             json.dump(self.finished, f)
 
     def load_finished(self):
         if os.path.exists(self.SAVE_PATH):
-            with open('finished.json', 'r') as f:
+            with open(self.SAVE_PATH, 'r') as f:
                 self.finished = json.load(f)
+
+    def load_hero(self):
+        if os.path.exists(self.HERO_PATH):
+            with open(self.HERO_PATH, 'r') as f:
+                self.hero_list = json.load(f)
 
     @staticmethod
     def _random_chose(act):
