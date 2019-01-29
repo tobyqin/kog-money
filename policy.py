@@ -74,7 +74,7 @@ class RandomPlayPolicy(Policy):
             time.sleep(1.5)
             return None
 
-        logging.info("old state:{}, new state:{}".format(self.state, action))
+        logging.debug("old state:{}, new state:{}".format(self.state, action))
         self.state = action
 
         if self.state == 'confirm_hero':

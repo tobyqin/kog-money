@@ -1,0 +1,5 @@
+scikit-image
+pypinyin
+pillow
+pure-python-adb
+opencv-python
