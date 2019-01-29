@@ -14,46 +14,45 @@ baseline = {}
 SCREEN_PATH = 'screen.png'
 
 tap_cords = {
-    'restart': (1750, 950, 2000, 1040),
-    'continue': (1000, 940, 1250, 1000),
-    'start': (1475,  830, 1720, 920),
-    'skip0': (2000, 29, 2100, 85),
-    'skip1': (2025, 20, 2135, 70),
-    'exit': (1890, 60, 2030, 145,),
-    'start_match': (1100,860, 1400, 940),
-    'return_room': (1150, 955, 1380,1025),
-    'confirm': (1020, 255, 1250, 300),
-    'match_continue': (970, 950, 1270, 1035),
-    'recover': (1320, 930, 1380, 1000),
-    'pick_hero': (1900, 990, 2140, 1060),
-    'check_finished': (816, 656, 998, 693),
-    'confirm_hero': (1900, 980, 2142, 1066)
+    'restart': (1000, 635, 1170, 690),
+    'continue': (560, 630, 720, 657),
+    'start': (880,  555, 1035, 611),
+    'skip0': (1190, 12, 1260, 45),
+    'skip1': (1190, 12, 1260, 45),
+    'exit': (1153, 43, 1264, 93,),
+    'start_match': (630, 574, 822, 630),
+    'return_room': (661, 638, 812, 684),
+    'confirm': (572, 168, 709, 198),
+    'match_continue': (542, 635, 739, 690),
+    'recover': (710, 619, 757, 671),
+    'pick_hero': (1104, 655, 1267, 712),
+    'check_finished': (435, 442, 557, 462),
+    'confirm_hero': (1103, 658, 1266, 713)
     # 'expand_hero': (459, 483,494,602)
 }
 
-
 tap_only_cords = {
-    'add_skill0': (1535, 810, 1595, 870),
-    'add_skill1': (1650, 610, 1710, 670),
-    'add_skill2': (1850, 490, 1910, 550),
-    'buy_item': (2060, 145, 2110, 205)
+    'add_skill0': (860, 540, 900, 580),
+    'add_skill1': (940, 409, 980, 449),
+    'add_skill2': (1067, 331, 1107, 371),
+    'buy_item': (1205, 95, 1255, 137)
 }
 
 
 # x, y, width, dura_start, dura_end - dura_start, 从点 x,y 随机方向滑动width，持续时间随机
 swipe_cords = {
-    'random_walk': (430, 850, 200, 3000, 8000),
-    'skill0':(1670, 950, 200, 100, 400),
-    'skill1':(1790, 750, 200, 100, 400),
-    'skill2':(1990, 630, 200, 100, 400),
+    'random_walk': (220, 570, 130, 3000, 8000),
+    'skill0':(943, 586, 85, 100, 400),
+    'skill1':(1030, 500, 85, 100, 400),
+    'skill2':(1121, 397, 85, 100, 400),
 }
 
 threshold = 10
 ACTIONS = tap_cords.keys()
 
 # 屏幕分辨率
-device_x, device_y = 2244, 1080
-base_x, base_y = 2244, 1080
+device_x, device_y = 1280, 720
+base_x, base_y = 1280, 720
 
 
 def init():
@@ -156,3 +155,27 @@ def check_single_action(name):
         return True
 
     return False
+
+
+def generate_hero_img():
+    frame = pull_screenshot(save_file=True)
+    y = 180
+    h = 138
+    x = 10
+    w = 120
+    row_num = 9
+    col_num = 4
+
+    base = 0
+
+    for j in range(col_num):
+        for i in range(row_num):
+            x_start = x + i * w
+            y_start = y + j * h
+            y_end = y_start + 100
+            x_end = x_start + 100
+            frame.crop((x_start, y_start, x_end, y_end)).save("heros1/{}.png".format(j * row_num + i + base))
+
+
+if __name__ == '__main__':
+    generate_hero_img()

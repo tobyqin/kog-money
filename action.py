@@ -28,8 +28,6 @@ class SwipeAction(Action):
 
 
 class RandomDirectionSwipeAction(SwipeAction):
-    control_center = (430, 850)
-    length = 200
 
     def __init__(self, name, cord):
         super(RandomDirectionSwipeAction, self).__init__(name, cord)
@@ -59,7 +57,7 @@ class TapAction(Action):
 class ConfirmAction(TapAction):
 
     def _center_cord(self):
-        return 1111, 900
+        return 636, 604
 
 
 class ContinueAction(TapAction):

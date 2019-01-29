@@ -20,8 +20,9 @@ class Policy(ABC):
 class RandomPlayPolicy(Policy):
 
     DEFAULT_ACTION = 'random_walk'
-    hero_list = ['bailixuance', 'dunshan', 'laofuzi', 'lianpo',
-                 'caocao','daqiao','mozi','change','miyue','sunbin',]
+    # hero_list = ['bailixuance', 'dunshan', 'laofuzi', 'lianpo',
+    #              'caocao','daqiao','mozi','change','miyue','sunbin',]
+    hero_list = ['百里玄策', '盾山', '老夫子', '廉颇','曹操', '大乔', '墨子', '嫦娥', '芈月', '孙膑']
     finished = []
 
     SAVE_PATH= 'finished.json'

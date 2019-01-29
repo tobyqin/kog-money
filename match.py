@@ -5,6 +5,7 @@ from skimage.feature import match_template
 import glob
 from util import pull_screenshot, SCREEN_PATH, swipe, tap_center, tap_by_name
 import time
+from pypinyin import pinyin
 
 OPENCV = 0
 SKIMAGE = 1
@@ -66,7 +67,7 @@ def valid_hero_location(top_left):
 
 
 def swipe_hero():
-    swipe(175,1000, 180, 400, 1500)
+    swipe(65, 600, 65, 200, 1500)
 
 
 def chose_hero(name):
@@ -75,7 +76,7 @@ def chose_hero(name):
     now = time.time()
     while True:
         pull_screenshot(save_file=True)
-        top_left, bottom_right = match_template1(template, SCREEN_PATH)
+        top_left, bottom_right = match_template1(template, SCREEN_PATH, plot=True)
         valid = valid_hero_location(top_left)
         if valid :
             break
@@ -90,5 +91,9 @@ def chose_hero(name):
     return True
 
 
+def to_pinyin(name):
+    n = [x for a in pinyin(name, 0) for x in a]
+    return ''.join(n)
+
 if __name__ == '__main__':
-    chose_hero('laofuzi')
+    chose_hero('老夫子')
