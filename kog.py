@@ -2,10 +2,10 @@
 
 import logging
 import os
-from util import check_action, save_crop, convert_cord, init, tap_screen
+from util import check_action, save_crop, convert_cord, init, tap_screen, check_single_action
+from policy import get_policy
 import time
 import datetime
-from time import sleep
 from action import get_action_by_name
 
 # 刷金币次数
@@ -24,7 +24,8 @@ if __name__ == '__main__':
     count = 0
     start = time.time()
     logging.info("start at: {}".format(datetime.datetime.now()))
+    play = get_policy()
     while True:
-        action = check_action()
+        action = play.action()
         if action:
             get_action_by_name(action).execute()
