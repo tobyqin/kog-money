@@ -63,8 +63,9 @@ iOS与mac用户，可以利用WDA，参考[微信跳一跳辅助程序的相关�
 
 ##### huawei mate20准备
 
+- `git checkout mate20`  
+
 `master`分支为模拟器版代码，真机版要切换到`mate20`分支上
-`git checkout mate20`
 
 
 ##### 雷电模拟器准备
