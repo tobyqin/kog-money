@@ -20,12 +20,12 @@ class Policy(ABC):
 class RandomPlayPolicy(Policy):
 
     DEFAULT_ACTION = 'random_walk'
-    # hero_list = ['bailixuance', 'dunshan', 'laofuzi', 'lianpo',
-    #              'caocao','daqiao','mozi','change','miyue','sunbin',]
-    hero_list = ['百里玄策', '盾山', '老夫子', '廉颇','曹操', '大乔', '墨子', '嫦娥', '芈月', '孙膑']
+    hero_list = ['bailixuance', 'dunshan', 'laofuzi', 'lianpo',
+                 'caocao','daqiao','mozi','change','miyue','sunbin',]
     finished = []
 
     SAVE_PATH= 'finished.json'
+    current_hero = None
 
     def __init__(self):
         self.state = 0 # started: 1, wait: 0
@@ -51,12 +51,12 @@ class RandomPlayPolicy(Policy):
         heros = [h for h in self.hero_list if h not in self.finished]
         num = len(heros)
         i = random.randint(0, num - 1)
-        self.current_hero = heros[i]
-        logging.info("choosing hero: {}".format(self.current_hero))
-        return self.current_hero
+        hero = heros[i]
+        logging.info("choosing hero: {}".format(hero))
+        return hero
 
     def set_finished(self):
-        if self.current_hero not in self.finished:
+        if self.current_hero and self.current_hero not in self.finished:
             logging.info('hero {} finished training!!!')
             self.finished.append(self.current_hero)
             self.save_finished()
@@ -72,13 +72,24 @@ class RandomPlayPolicy(Policy):
         # 确认英雄后，识别到挑选英雄，则略过
         if self.state == 'confirm_hero' and action == 'pick_hero':
             time.sleep(1.5)
-            return action
+            return None
 
+        logging.info("old state:{}, new state:{}".format(self.state, action))
         self.state = action
 
+        if self.state == 'confirm_hero':
+            return action
+
         if self.state == 'pick_hero':
-            if not chose_hero(self._random_hero()):
-                chose_hero(self._random_hero())
+            hero = self._random_hero()
+            if not chose_hero(hero):
+                logging.debug('find hero {} failed, retry'.format(hero))
+                hero = self._random_hero()
+                chose_hero(hero, reverse=True)
+                logging.debug('try to find hero {}'.format(hero))
+
+            self.current_hero = hero
+            time.sleep(1)
             return action
 
         r = random.random()
@@ -90,7 +101,7 @@ class RandomPlayPolicy(Policy):
         else:
             action = self.DEFAULT_ACTION
 
-        logging.info("ACTION: {}".format(action))
+        logging.debug("ACTION: {}".format(action))
         return action
 
 

@@ -40,7 +40,7 @@ class RandomDirectionSwipeAction(SwipeAction):
         x1 = self.control_center[0] + self.length * (random.random() - 0.5)
         y1 = self.control_center[1] + self.length * (random.random() - 0.5)
         duration = random.randint(self.min_duration, self.max_duration)
-        logging.info('walk for {}s to ({},{})'.format(duration, x1, y1))
+        logging.debug('walk for {}s to ({},{})'.format(duration, x1, y1))
         self.cord = (*self.control_center, x1, y1, duration)
         super(RandomDirectionSwipeAction, self).execute()
 

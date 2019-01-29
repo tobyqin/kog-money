@@ -13,6 +13,8 @@ baseline = {}
 
 SCREEN_PATH = 'screen.png'
 
+hero_anchor = (10, 134, 5)
+
 tap_cords = {
     'restart': (1000, 635, 1170, 690),
     'continue': (560, 630, 720, 657),
@@ -134,7 +136,7 @@ def check_action():
 
     min_key = min(crop_frame, key=crop_frame.get)
     if crop_frame[min_key] < threshold:
-        logging.info("ACTION: {}".format(min_key))
+        logging.debug("ACTION: {}".format(min_key))
         return min_key
 
     logging.debug("ACTION: no action")
