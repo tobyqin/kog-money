@@ -18,14 +18,18 @@ logging.basicConfig(format='%(asctime)s %(message)s',
                     )
 
 
-if __name__ == '__main__':
+def main():
     init()
     save_crop()
-    count = 0
-    start = time.time()
     logging.info("start at: {}".format(datetime.datetime.now()))
     play = get_policy()
     while True:
         action = play.action()
         if action:
             get_action_by_name(action).execute()
+
+
+
+if __name__ == '__main__':
+    main()
+    
