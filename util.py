@@ -170,13 +170,16 @@ def generate_hero_img():
 
     base = 0
 
+    if not os.path.exists('hero'):
+        os.mkdir('hero')
+
     for j in range(col_num):
         for i in range(row_num):
             x_start = x + i * w
             y_start = y + j * h
             y_end = y_start + 100
             x_end = x_start + 100
-            frame.crop((x_start, y_start, x_end, y_end)).save("heros1/{}.png".format(j * row_num + i + base))
+            frame.crop((x_start, y_start, x_end, y_end)).save("hero/{}.png".format(j * row_num + i + base))
 
 
 if __name__ == '__main__':
