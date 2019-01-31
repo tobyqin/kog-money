@@ -3,6 +3,11 @@
 一个王者荣耀刷金币的小外挂。
 始发于：[教你使用50行Python代码刷王者荣耀金币](https://betacat.online/posts/2017-12-14/hack-way-to-get-golden-coins-for-king-of-glory/)
 
+`kog_simple.py`:刷金币版本
+
+`kog.py`: 刷金币以及英雄熟练度，只支持android。真机支支持huawie mate20， 可使用[雷电模拟器](https://www.ldplayer.net/)。
+
+
 ## 原理
 
 王者荣耀的冒险模式里有个挑战模式，第一次过关可以获得比较多的金币，后面重新挑战还是会获得少量金币，这不算是bug，你不嫌烦手动蛮力也可以刷金币。
@@ -46,6 +51,37 @@ iOS与mac用户，可以利用WDA，参考[微信跳一跳辅助程序的相关�
 - [在Mac OSX 上配置Appium+Android自动化测试环境](https://betacat.online/posts/2017-12-10/setup-appium-test-environment-on-mac-osx/)
 
 如果只是为了刷金币，只需要安装好驱动和ADB工具即可。
+
+### 刷金币以及英雄熟练度
+
+##### 通用准备
+
+- 电脑需要有[ADB](https://developer.android.com/studio/releases/platform-tools.html)驱动，可以到[这里](https://adb.clockworkmod.com/)下载。
+- ADB需要加入环境变量PATH中，方便随时调用。
+- 电脑上需要安装Python，因为这是我选择的脚本语言。
+- 安装python依赖`pip install -r requirements.txt`
+
+##### huawei mate20准备
+
+- `git checkout mate20`  
+
+`master`分支为模拟器版代码，真机版要切换到`mate20`分支上
+
+
+##### 雷电模拟器准备
+- 电脑需要安装[雷电模拟器](https://www.ldplayer.net/)
+- 在雷电模拟器的设置中，性能设置选择`平板版 1280*720 (dpi 240)` （这个貌似是默认设置）
+
+
+##### 刷金币
+
+1. 运行`python money.py`， 第一次运行需要手动配置英雄阵容，点游戏中的`自动战斗`按钮。
+
+
+##### 刷英雄熟练度
+1. 配置`hero.json`, 配置熟练度未到蓝色的英雄拼音。（配置多个时，每次随机选择一个。建议最少配置两个，防止英雄被别人先选。）
+2. 然后运行`python robot.py`
+
 
 ### iPhone
 - 真实iPhone（目前只对6s进行适配）
@@ -117,13 +153,13 @@ if __name__ == '__main__':
 - https://github.com/tobyqin/kog-money
 
 然后：
-1. 下载项目中的 `kog.py` 到本地，iOS为 `kog_ios.py`
+1. 下载项目中的 `kog_simple.py` 到本地，iOS为 `kog_ios.py`
 2. 将游戏打开，进入挑战模式，魔女回忆，阵容调整界面。
-3. 根据手机性能和分辨率，调整`kog.py`中的参数。（手机分辨率，刷金次数等等）
+3. 根据手机性能和分辨率，调整`kog_simple.py`中的参数。（手机分辨率，刷金次数等等）
 4. 运行以下命令，手机上就可以查看实时运行效果。
 
 ```
-python kog.py
+python kog_simple.py
 ```
 
 注意：
