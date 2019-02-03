@@ -89,7 +89,7 @@ def choose_level1():
 
     tap_sleep(200, 387)
 
-    for i in range(10):
+    for i in range(5):
         swipe(200, 250, 210, 580, 300)
 
     tap_sleep(217, 95)
@@ -130,6 +130,8 @@ def get_action_by_name(name):
             action = ContinueMatchAction(name, tap_cords[name])
         elif name == 'confirm':
             action = ConfirmAction(name, tap_cords[name])
+        elif name == 'return_room':
+            action = ReturnRoomAction(name, tap_cords[name])
         elif name in swipe_cords.keys():
             action = RandomDirectionSwipeAction(name, swipe_cords[name])
         elif name in tap_only_cords:
