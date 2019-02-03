@@ -1,12 +1,13 @@
-from abc import abstractmethod,ABC
-from util import tap_only_cords, swipe_cords
+import json
+import logging
+import os
 import random
 import time
-from util import check_action
-import logging
+from abc import abstractmethod, ABC
+
 from match import chose_hero
-import os
-import json
+from util import check_action
+from util import tap_only_cords, swipe_cords
 
 
 class Policy(ABC):
@@ -63,6 +64,8 @@ class RandomPlayPolicy(Policy):
         return hero
 
     def set_finished(self):
+        if not self.current_hero:
+            logging.info("hero finished")
         if self.current_hero and self.current_hero not in self.finished:
             logging.info('hero {} finished training!!!')
             self.finished.append(self.current_hero)

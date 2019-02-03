@@ -1,10 +1,11 @@
-from PIL import Image
-import numpy as np
-import os
 import logging
-import subprocess
+import os
 from io import BytesIO
+
+import numpy as np
+from PIL import Image
 from adb.client import Client as AdbClient
+
 client = AdbClient(host="127.0.0.1", port=5037)
 
 device = client.devices()[0]
@@ -23,7 +24,7 @@ tap_cords = {
     'skip1': (1190, 12, 1260, 45),
     'exit': (1153, 43, 1264, 93,),
     'start_match': (630, 574, 822, 630),
-    'return_room': (661, 638, 812, 684),
+    'return_room': (461, 638, 612, 684),
     'confirm': (572, 168, 709, 198),
     'match_continue': (542, 635, 739, 690),
     'recover': (710, 619, 757, 671),
