@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import logging
-import os
-from util import check_action, save_crop, convert_cord, init, tap_screen, check_single_action
-from policy import get_policy
-import time
 import datetime
+import logging
+
 from action import get_action_by_name
+from policy import get_policy
+from util import save_crop, init
 
 # 刷金币次数
 repeat_times = 60
