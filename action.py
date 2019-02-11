@@ -95,11 +95,20 @@ def choose_level1():
     tap_sleep(217, 95)
 
 
+def thumb_up():
+    tap_screen(588, 186)
+    tap_screen(599, 269)
+    tap_screen(599, 358)
+    tap_screen(599, 441)
+    tap_screen(599, 530)
+    time.sleep(0.5)
+
+
 class ReturnRoomAction(TapAction):
 
     def execute(self):
+        thumb_up()
         super(ReturnRoomAction, self).execute()
-
         choose_level1()
 
 
