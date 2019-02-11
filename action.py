@@ -1,9 +1,10 @@
-from util import tap_screen, tap_cords, swipe, swipe_cords, tap_only_cords, check_single_action
-from abc import ABC, abstractmethod
-import time
 import logging
 import random
+import time
+from abc import ABC, abstractmethod
+
 from policy import get_policy
+from util import tap_screen, tap_cords, swipe, swipe_cords, tap_only_cords, check_single_action
 
 action_caches = {}
 
@@ -73,6 +74,44 @@ class ContinueAction(TapAction):
         self.start = time.time()
 
 
+def tap_sleep(x, y):
+    tap_screen(x, y)
+
+    time.sleep(0.5)
+
+
+def choose_level1():
+    time.sleep(1)
+
+    tap_sleep(513, 534)
+
+    tap_sleep(1090, 174)
+
+    tap_sleep(200, 387)
+
+    for i in range(5):
+        swipe(200, 250, 210, 580, 300)
+
+    tap_sleep(217, 95)
+
+
+def thumb_up():
+    tap_screen(588, 186)
+    tap_screen(599, 269)
+    tap_screen(599, 358)
+    tap_screen(599, 441)
+    tap_screen(599, 530)
+    time.sleep(0.5)
+
+
+class ReturnRoomAction(TapAction):
+
+    def execute(self):
+        thumb_up()
+        super(ReturnRoomAction, self).execute()
+        choose_level1()
+
+
 class ContinueMatchAction(ContinueAction):
 
     def __init__(self, name, cord):
@@ -100,6 +139,8 @@ def get_action_by_name(name):
             action = ContinueMatchAction(name, tap_cords[name])
         elif name == 'confirm':
             action = ConfirmAction(name, tap_cords[name])
+        elif name == 'return_room':
+            action = ReturnRoomAction(name, tap_cords[name])
         elif name in swipe_cords.keys():
             action = RandomDirectionSwipeAction(name, swipe_cords[name])
         elif name in tap_only_cords:
