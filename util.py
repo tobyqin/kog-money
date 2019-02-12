@@ -16,6 +16,8 @@ SCREEN_PATH = 'screen.png'
 
 hero_anchor = (10, 134, 5)
 
+MODE = "COIN"
+
 tap_cords = {
     'restart': (1000, 635, 1170, 690),
     'continue': (560, 630, 720, 657),
@@ -29,8 +31,11 @@ tap_cords = {
     'match_continue': (542, 635, 739, 690),
     'recover': (710, 619, 757, 671),
     'pick_hero': (1104, 655, 1267, 712),
-    'check_finished': (435, 442, 557, 462),
-    'confirm_hero': (1103, 658, 1266, 713)
+    'check_finished': (435, 442, 513, 459),
+    'confirm_hero': (1103, 658, 1266, 713),
+    'relax': (807, 457, 926, 508),
+    'confirm1': (554, 635, 722, 693),
+    'confirm2': (556, 477, 723, 528)
     # 'expand_hero': (459, 483,494,602)
 }
 

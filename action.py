@@ -135,7 +135,7 @@ def get_action_by_name(name):
     except KeyError as e:
         if name == 'continue':
             action = ContinueAction(name, tap_cords[name])
-        elif name == 'continue_match':
+        elif name == 'match_continue':
             action = ContinueMatchAction(name, tap_cords[name])
         elif name == 'confirm':
             action = ConfirmAction(name, tap_cords[name])
