@@ -4,7 +4,7 @@ import time
 from abc import ABC, abstractmethod
 
 from policy import get_policy
-from util import tap_screen, tap_cords, swipe, swipe_cords, tap_only_cords, check_single_action
+from util import tap_screen, tap_cords, swipe, swipe_cords, tap_only_cords, check_single_action, restart_game
 
 action_caches = {}
 
@@ -53,6 +53,16 @@ class TapAction(Action):
 
     def execute(self):
         tap_screen(*self._center_cord())
+
+
+class RelaxAction(TapAction):
+
+    def execute(self):
+        super(RelaxAction, self).execute()
+
+        restart_game()
+
+        choose_level1()
 
 
 class ConfirmAction(TapAction):
@@ -141,6 +151,8 @@ def get_action_by_name(name):
             action = ConfirmAction(name, tap_cords[name])
         elif name == 'return_room':
             action = ReturnRoomAction(name, tap_cords[name])
+        elif name == 'relax':
+            action = RelaxAction(name, tap_cords[name])
         elif name in swipe_cords.keys():
             action = RandomDirectionSwipeAction(name, swipe_cords[name])
         elif name in tap_only_cords:

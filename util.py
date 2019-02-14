@@ -1,5 +1,6 @@
 import logging
 import os
+import time
 from io import BytesIO
 
 import numpy as np
@@ -77,6 +78,26 @@ def tap_screen(x, y):
     """calculate real x, y according to device resolution."""
     real_x, real_y = convert_cord(x, y)
     device.shell('input tap {} {}'.format(real_x, real_y))
+
+
+def restart_game():
+    device.shell('am force-stop com.tencent.tmgp.sgame')  # 关闭游戏
+
+    logging.info("休息16分钟")
+    time.sleep(60 * 16)
+
+    logging.info("重启游戏")
+
+    device.shell('monkey -p com.tencent.tmgp.sgame -c android.intent.category.LAUNCHER 1')  # 打开游戏
+
+    time.sleep(60)
+
+    tap_screen(643, 553)
+
+    time.sleep(20)
+
+    for i in range(5):  # 关闭广告
+        tap_screen(1174, 77)
 
 
 def tap_center(top_left, bottom_right):
@@ -189,4 +210,5 @@ def generate_hero_img():
 
 
 if __name__ == '__main__':
-    generate_hero_img()
+    # generate_hero_img()
+    restart_game()
