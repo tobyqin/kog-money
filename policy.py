@@ -65,9 +65,9 @@ class RandomPlayPolicy(Policy):
 
     def set_finished(self):
         if not self.current_hero:
-            logging.info("hero finished")
+            logging.warning("hero finished, no hero saved!")
         if self.current_hero and self.current_hero not in self.finished:
-            logging.info('hero {} finished training!!!')
+            logging.info('hero {} finished training!!!'.format(self.current_hero))
             self.finished.append(self.current_hero)
             self.save_finished()
 
