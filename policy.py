@@ -7,7 +7,7 @@ from abc import abstractmethod, ABC
 
 from match import chose_hero
 from util import check_action
-from util import tap_only_cords, swipe_cords
+from util import tap_only_cords, swipe_cords, stop_game
 
 
 class Policy(ABC):
@@ -58,6 +58,10 @@ class RandomPlayPolicy(Policy):
     def _random_hero(self):
         heros = [h for h in self.hero_list if h not in self.finished]
         num = len(heros)
+        if num == 0:
+            logging.info("所有英雄已经刷完，退出游戏")
+            stop_game()
+            exit(0)
         i = random.randint(0, num - 1)
         hero = heros[i]
         logging.info("choosing hero: {}".format(hero))
