@@ -80,24 +80,35 @@ def tap_screen(x, y):
     device.shell('input tap {} {}'.format(real_x, real_y))
 
 
-def restart_game():
+def stop_game():
     device.shell('am force-stop com.tencent.tmgp.sgame')  # 关闭游戏
 
-    logging.info("休息16分钟")
-    time.sleep(60 * 16)
 
-    logging.info("重启游戏")
-
+def start_game():
     device.shell('monkey -p com.tencent.tmgp.sgame -c android.intent.category.LAUNCHER 1')  # 打开游戏
 
     time.sleep(60)
 
     tap_screen(643, 553)
 
-    time.sleep(20)
+    logging.info("等待1分钟")
 
+    time.sleep(60)
+
+    logging.info("关闭广告")
     for i in range(5):  # 关闭广告
         tap_screen(1174, 77)
+
+
+def restart_game():
+    stop_game()
+
+    logging.info("休息10分钟")
+    time.sleep(60 * 10)
+
+    logging.info("重启游戏")
+
+    start_game()
 
 
 def tap_center(top_left, bottom_right):
