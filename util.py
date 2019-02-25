@@ -199,7 +199,7 @@ def check_single_action(name):
 
 def generate_hero_img():
     frame = pull_screenshot(save_file=True)
-    y = 180
+    y = 72
     h = 138
     x = 10
     w = 120
