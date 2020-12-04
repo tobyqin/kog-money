@@ -5,7 +5,7 @@
 
 `kog_simple.py`:刷金币版本
 
-`kog.py`: 刷金币以及英雄熟练度，只支持android。真机支支持huawie mate20， 可使用[雷电模拟器](https://www.ldplayer.net/)。
+`kog.py`: 刷金币以及英雄熟练度，只支持android。真机只支持huawie mate20， 可使用[雷电模拟器](https://www.ldplayer.net/)。
 
 
 ## 原理
