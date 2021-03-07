@@ -1,5 +1,7 @@
 # kog-money
 
+> 此项目不再维护和更新，谢谢。--- 2021.3
+
 一个王者荣耀刷金币的小外挂。
 始发于：[教你使用50行Python代码刷王者荣耀金币](https://betacat.online/posts/2017-12-14/hack-way-to-get-golden-coins-for-king-of-glory/)
 
