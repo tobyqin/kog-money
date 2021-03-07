@@ -1,6 +1,6 @@
-# kog-money
-
 > 此项目不再维护和更新，谢谢。--- 2021.3
+
+# kog-money
 
 一个王者荣耀刷金币的小外挂。
 始发于：[教你使用50行Python代码刷王者荣耀金币](https://betacat.online/posts/2017-12-14/hack-way-to-get-golden-coins-for-king-of-glory/)
@@ -49,8 +49,8 @@ iOS与mac用户，可以利用WDA，参考[微信跳一跳辅助程序的相关�
 
 专业的开发测试人员，也可以参考我的另外两篇博客：
 
-- [在 Windows 下搭建 Appium + Android 自动化测试环境](https://betacat.online/posts/2017-05-03/setup-appium-automation-test-environment/)
-- [在Mac OSX 上配置Appium+Android自动化测试环境](https://betacat.online/posts/2017-12-10/setup-appium-test-environment-on-mac-osx/)
+- [在 Windows 下搭建 Appium + Android 自动化测试环境](https://tobyqin.cn/posts/2017-05-03/setup-appium-automation-test-environment/)
+- [在Mac OSX 上配置Appium+Android自动化测试环境](https://tobyqin.cn/posts/2017-12-10/setup-appium-test-environment-on-mac-osx/)
 
 如果只是为了刷金币，只需要安装好驱动和ADB工具即可。
 
@@ -168,7 +168,7 @@ python kog_simple.py
 
 1. 每周金币上限4200，需要接近4个小时，不建议一次刷满，手机和你都要休息。
 2. 铭文，手机性能，英雄选择都会影响通关速度，自己微调等待时间。
-3. 如果你不想被USB数据线束缚，可以考虑[使用无线连接Android真机](https://betacat.online/posts/2017-12-12/connect-adb-via-wifi/)。
+3. 如果你不想被USB数据线束缚，可以考虑[使用无线连接Android真机](https://tobyqin.cn/posts/2017-12-12/connect-adb-via-wifi/)。
 
 ## 声明
 
