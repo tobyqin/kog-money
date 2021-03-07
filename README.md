@@ -3,7 +3,7 @@
 # kog-money
 
 一个王者荣耀刷金币的小外挂。
-始发于：[教你使用50行Python代码刷王者荣耀金币](https://toby.qin/posts/2017-12-14/hack-way-to-get-golden-coins-for-king-of-glory/)
+始发于：[教你使用50行Python代码刷王者荣耀金币](https://tobyqin.cn/posts/2017-12-14/hack-way-to-get-golden-coins-for-king-of-glory/)
 
 `kog_simple.py`:刷金币版本
 
